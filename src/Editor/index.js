@@ -5,7 +5,7 @@ class Editor extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            value: 'Please input your markdown text'
+            value: ''
         }
         this.handleChange = this.handleChange.bind(this);
     };
@@ -20,21 +20,24 @@ class Editor extends React.Component {
      }).replace(/^#(.*)/gm,(m,g)=>{
          return `<h1>${g}</h1>`
      }).replace(/^---(.*)/gm,(m,g)=>{
-         return `<hr>${g}</hr>`
+         return `<hr/>`
      }).replace(/^-(.*)/gm,(m,g)=>{
          return `<li>${g}</li>`
-     });
+     }).replace(/(\n)/gm,(m,g)=>{
+         return `<br/>`
+     })
      return res;
     }
     render() {
         return (
             <div className={"editor"} >
-                <textarea id={"regEx"} value={this.state.value} onChange={this.handleChange} rows="100" cols="300">
-               </textarea>
+                <textarea id={"regEx"} placeholder="INPUT YOUR TEXT HERE" value={this.state.value} onChange={this.handleChange} rows="100" cols="300">
+                     </textarea>
+                <div className={"outputWindow"}>
+                      {ReactHtmlParser(this.convertToHtml(this.state.value))}
+                  </div>
 
-               <div>
-                   {ReactHtmlParser(this.convertToHtml(this.state.value))}
-               </div>
+
             </div>
         )
     }
