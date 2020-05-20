@@ -19,9 +19,9 @@ class Editor extends React.Component {
          return `<h2>${g}</h2>`
      }).replace(/^#(.*)/gm,(m,g)=>{
          return `<h1>${g}</h1>`
-     }).replace(/^---(.*)/gm,(m,g)=>{
+     }).replace(/^---(.*)\n?/gm,(m,g)=>{
          return `<hr/>`
-     }).replace(/^-(.*)/gm,(m,g)=>{
+     }).replace(/^-(.*)\n?/gm,(m,g)=>{
          return `<li>${g}</li>`
      }).replace(/(\n)/gm,(m,g)=>{
          return `<br/>`
@@ -36,8 +36,6 @@ class Editor extends React.Component {
                 <div className={"outputWindow"}>
                       {ReactHtmlParser(this.convertToHtml(this.state.value))}
                   </div>
-
-
             </div>
         )
     }

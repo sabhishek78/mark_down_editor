@@ -20,7 +20,7 @@ textArea{
     resize: none; /*disables the resize option which appears at the bottom right corner*/
     background-color: black;
     color:white;
-    font-size:40px;
+    font-size:30px;
 }
 .editor{
     display:flex;
