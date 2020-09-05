@@ -23,9 +23,10 @@ class Editor extends React.Component {
          return `<hr/>`
      }).replace(/^-(.*)\n?/gm,(m,g)=>{
          return `<li>${g}</li>`
-     }).replace(/(\n)/gm,(m,g)=>{
+     }).replace(/(^\n)/gm,(m,g)=>{
          return `<br/>`
      })
+
      return res;
     }
     render() {
@@ -35,7 +36,7 @@ class Editor extends React.Component {
                      </textarea>
                 <div className={"outputWindow"}>
                       {ReactHtmlParser(this.convertToHtml(this.state.value))}
-                  </div>
+                </div>
             </div>
         )
     }
